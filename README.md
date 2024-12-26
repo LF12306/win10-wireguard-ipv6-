@@ -46,8 +46,7 @@ if ($dynamicIPv6) {
   # 确保 Hosts 文件存在
   if (!(Test-Path $hostsPath)) {
     Write-Host "Hosts 文件不存在，退出操作。"
-    exit
-  }
+    exit }
   # 读取当前 Hosts 文件内容
   $hostsContent = Get-Content $hostsPath
   # 删除已有的该域名记录
@@ -64,8 +63,7 @@ if ($dynamicIPv6) {
   Move-Item -Path $tempHostsPath -Destination $hostsPath -Force
   Write-Host "Hosts 文件已成功更新！"
 } else {
-  Write-Host "未获取到动态 IPv6 地址，未进行更改。"
-}
+  Write-Host "未获取到动态 IPv6 地址，未进行更改。"}
 
 
 用powershell运行测试一下没问题
