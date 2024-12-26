@@ -37,7 +37,7 @@ wireguard解析纯v6的域名会解析成运营商的v4地址，导致完全连�
 创建一个ps1脚本（新建空白文本把下面的复制进去，改一下域名，然后把txt后缀改成ps1就行），让脚本解析你域名的ipv6地址，再把v6地址写入hosts里，这样wireguard解析域名时会自动读取你hosts里的IP地址，脚本如下
 
 # 获取动态 IPv6 地址
-$dynamicIPv6 = [System.Net.Dns]::GetHostAddresses("你的域名") | Where-Object { $_.AddressFamily -eq "InterNetworkV6" } | Select-Object -First 1
+$dynamicIPv6 = [System.Net.Dns]::GetHostAddresses("你的域名") | Where-Object {$_.AddressFamily -eq "InterNetworkV6"} | Select-Object -First 1
 if ($dynamicIPv6) {
   # Hosts 文件路径
   $hostsPath = "C:\Windows\System32\drivers\etc\hosts"
