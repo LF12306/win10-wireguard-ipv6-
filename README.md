@@ -1,9 +1,8 @@
-# win10-wireguard-ipv6-
-先说一下情况，家里的NAS因为各种原因用的是win系统，所以和一般的wireguard有所不同。
+# win10-wireguard-ipv6-only-wireguard的PC端纯ipv6校园网隧道方案
+先说一下情况，家里的NAS因为各种原因用的是win系统，所以和一般的wireguard有所不同。同时，本文是在纯ipv6的情况下进行搭建的，是一种临时的解决方案，可能依个人情况不同效果也有所不同。
 
 前提条件：1.具备公网ipv6，可以用https://ipv6ready.me/index.html.zh_CN 进行测试，没有公网v6就不用往下看了。
 2.NAS（或者说你用来中转的电脑服务器）已经搞了ddns以及有相对应的域名，如果没搞ddns就先去把ddns go和域名搞好，这些在站内以及网上都有教程，不多赘述。
-
 
 步骤：
 
