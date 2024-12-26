@@ -9,7 +9,7 @@
 
 1.先去wireguard官网下win的安装包，两台电脑都安装好wireguard。
 2.对wireguard进行基础的配置，太复杂的东西我也不会，基本上就是生成公钥和私钥，然后配置服务器的端口
-
+```
 服务器
 [Interface]
 PrivateKey = 私钥
@@ -18,7 +18,8 @@ Address = 10.0.0.1/32（这里可以自己随便填内网地址）
 [Peer]
 PublicKey = 公钥
 AllowedIPs = 10.0.0.0/24
-
+```
+```
 客户端
 [Interface]
 PrivateKey = 私钥
@@ -29,6 +30,7 @@ PublicKey = 公钥
 AllowedIPs = 10.0.0.0/24
 Endpoint =  域名:51820
 PersistentKeepalive = 25（这里是让校园网内的设备每隔25秒发送一次保活的数据包，因为外部不能主动访问校园网内的设备，所以需要校园网内设备主动发起连接，这样可以保证学校里的电脑一直和家里的设备连接）
+```
 
 3.如果你有公网v4，就不需要往下看了，下面是纯公网v6用的，同时也是本文重点，旨在帮助刚接触wireguard的朋友
 
@@ -36,6 +38,7 @@ wireguard解析纯v6的域名会解析成运营商的v4地址，导致完全连�
 
 创建一个ps1脚本（新建空白文本把下面的复制进去，改一下域名，然后把txt后缀改成ps1就行），让脚本解析你域名的ipv6地址，再把v6地址写入hosts里，这样wireguard解析域名时会自动读取你hosts里的IP地址，脚本如下
 
+```powershell
   # 获取动态 IPv6 地址
 $dynamicIPv6 = [System.Net.Dns]::GetHostAddresses("你的域名") | Where-Object {$_.AddressFamily -eq "InterNetworkV6"} | Select-Object -First 1
 if ($dynamicIPv6) {
@@ -64,8 +67,8 @@ if ($dynamicIPv6) {
   Write-Host "Hosts 文件已成功更新！"
 } else {
   Write-Host "未获取到动态 IPv6 地址，未进行更改。"}
-
-
+```
+                                  
 用powershell运行测试一下没问题
 
 再在任务计划程序里设置一下脚本开机自启动，一切就搞好了。
